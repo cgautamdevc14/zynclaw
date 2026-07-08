@@ -1,0 +1,13 @@
+model_list:
+  - model_name: Qwen3.6-27B
+    litellm_params:
+      model: openai/Qwen/Qwen3.6-27B-FP8
+      api_base: http://localhost:8000/v1
+      api_key: local-vllm-key
+
+litellm_settings:
+  drop_params: true
+  set_verbose: false
+
+general_settings:
+  master_key: local-dev-key
