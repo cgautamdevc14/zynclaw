@@ -1,0 +1,51 @@
+name: Product intake
+description: Capture a product idea before project planning.
+title: "[product] "
+labels: ["product"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user or team problem are we solving?
+    validations:
+      required: true
+  - type: input
+    id: audience
+    attributes:
+      label: Audience
+      description: Who is affected?
+    validations:
+      required: true
+  - type: textarea
+    id: first_slice
+    attributes:
+      label: First slice
+      description: What is the smallest useful version?
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description: What should this not include?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: What must be true for this to be done?
+      placeholder: "- "
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Metrics
+      description: How will we know this worked?
+  - type: textarea
+    id: open_questions
+    attributes:
+      label: Open questions
+      description: What still needs a human decision?

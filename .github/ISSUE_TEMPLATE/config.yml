@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Setup guide
+    url: https://github.com/cgautamdevc14/zynclaw/blob/main/docs/SETUP.md
+    about: Start here if the local inference stack is not running yet.

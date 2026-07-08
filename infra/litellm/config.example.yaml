@@ -1,13 +1,17 @@
 model_list:
   - model_name: Qwen3.6-27B
     litellm_params:
-      model: openai/Qwen/Qwen3.6-27B-FP8
-      api_base: http://localhost:8000/v1
-      api_key: local-vllm-key
+      model: openai/Qwen3.6-27B
+      api_base: os.environ/VLLM_OPENAI_BASE_URL
+      api_key: os.environ/VLLM_API_KEY
 
 litellm_settings:
   drop_params: true
+  callbacks: ["prometheus"]
+  turn_off_message_logging: true
+  redact_user_api_key_info: true
   set_verbose: false
 
 general_settings:
-  master_key: local-dev-key
+  master_key: os.environ/LITELLM_MASTER_KEY
+  always_include_stream_usage: true

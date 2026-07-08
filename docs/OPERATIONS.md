@@ -22,11 +22,13 @@ Run:
 ```bash
 make setup
 make doctor
+make endpoint-probe
 ```
 
 `make setup` creates `.env` and performs the first local checks. `make doctor`
 collects the remaining host and endpoint diagnostics without requiring you to
-remember every command.
+remember every command. `make endpoint-probe` checks LiteLLM and vLLM health,
+models, and metrics endpoints.
 
 ## NGC Image Patch
 

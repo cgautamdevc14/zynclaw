@@ -40,6 +40,7 @@ def build_payload(model: str) -> dict[str, Any]:
                 "function": {
                     "name": "calculator",
                     "description": "Evaluate a basic arithmetic expression.",
+                    "strict": True,
                     "parameters": {
                         "type": "object",
                         "properties": {
@@ -55,6 +56,7 @@ def build_payload(model: str) -> dict[str, Any]:
             }
         ],
         "tool_choice": "auto",
+        "parallel_tool_calls": False,
         "temperature": 0,
     }
 

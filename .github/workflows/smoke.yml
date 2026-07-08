@@ -18,5 +18,7 @@ jobs:
         run: bash -n scripts/*.sh
       - name: Check repository structure
         run: make repo-check
+      - name: Probe CLI help
+        run: python scripts/endpoint_probe.py --help
       - name: Check Makefile targets
         run: make lint

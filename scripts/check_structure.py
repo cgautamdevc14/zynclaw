@@ -14,9 +14,14 @@ ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_PATHS = [
     "README.md",
     "docs/END_TO_END.md",
+    "docs/HARDENING.md",
     "docs/SETUP.md",
+    "docs/SOURCES.md",
     "docs/VALIDATION.md",
     "examples/local-agent-setup-work-item/product-brief.md",
+    "observability/README.md",
+    "observability/prometheus/prometheus.yml",
+    "observability/prometheus/rules/local_inference_alerts.yml",
     "product/README.md",
     "product/INTAKE.md",
     "product/PRD_TEMPLATE.md",
@@ -35,13 +40,18 @@ REQUIRED_PATHS = [
     "templates/work-item/status.md",
     "prompts/engineering-agent.md",
     ".github/pull_request_template.md",
+    ".github/ISSUE_TEMPLATE/local-agent-task.yml",
+    ".github/ISSUE_TEMPLATE/product-intake.yml",
+    ".github/ISSUE_TEMPLATE/qa-report.yml",
 ]
 
 EXECUTABLE_SCRIPTS = [
     "scripts/acceptance.py",
     "scripts/check_structure.py",
     "scripts/doctor.sh",
+    "scripts/endpoint_probe.py",
     "scripts/gb10_memory.sh",
+    "scripts/gpu_preflight.sh",
     "scripts/install_litellm.sh",
     "scripts/log_triage.sh",
     "scripts/scaffold_work_item.py",

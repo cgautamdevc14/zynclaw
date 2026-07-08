@@ -46,12 +46,15 @@ acceptance criteria are already clear.
 |   |-- CLAWRIUM.md
 |   |-- CLIENTS.md
 |   |-- END_TO_END.md
+|   |-- HARDENING.md
 |   |-- OPERATIONS.md
 |   |-- SETUP.md
+|   |-- SOURCES.md
 |   |-- TEAM_ROLLOUT.md
 |   `-- VALIDATION.md
 |-- engineering/
 |-- examples/
+|-- observability/
 |-- product/
 |-- project/
 |-- prompts/
@@ -66,7 +69,9 @@ acceptance criteria are already clear.
 |   |-- acceptance.py
 |   |-- check_structure.py
 |   |-- doctor.sh
+|   |-- endpoint_probe.py
 |   |-- gb10_memory.sh
+|   |-- gpu_preflight.sh
 |   |-- install_litellm.sh
 |   |-- log_triage.sh
 |   `-- scaffold_work_item.py
@@ -149,6 +154,8 @@ make start-vllm       Start the vLLM compose service.
 make logs-vllm        Follow vLLM logs.
 make litellm          Start LiteLLM in the foreground.
 make acceptance       Validate structured tool-call behavior.
+make endpoint-probe   Probe LiteLLM and vLLM health, models, and metrics.
+make gpu-preflight    Verify host and container GPU access.
 make scaffold         Create a product/project/engineering/QA work item.
 make repo-check       Validate repo structure and local Markdown links.
 ```
@@ -164,6 +171,16 @@ make repo-check       Validate repo structure and local Markdown links.
 - MTP is actually active by checking startup logs for the resolved architecture.
 - LiteLLM has `drop_params: true` so clients with different reasoning knobs do
   not trigger avoidable 400s.
+- `/health`, `/v1/models`, and `/metrics` are reachable where expected.
+- GPU access works from both the host and an NVIDIA-enabled container.
+
+## Hardening And Observability
+
+- Use [docs/HARDENING.md](docs/HARDENING.md) before broad team rollout.
+- Use [observability/README.md](observability/README.md) for Prometheus scrape
+  and alerting examples.
+- Use [docs/SOURCES.md](docs/SOURCES.md) to see which official docs informed
+  the current defaults.
 
 ## Team Usage
 

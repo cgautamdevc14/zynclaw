@@ -1,0 +1,62 @@
+name: Local agent task
+description: Hand a scoped implementation task to the local inference stack.
+title: "[agent] "
+labels: ["agent-task"]
+body:
+  - type: input
+    id: objective
+    attributes:
+      label: Objective
+      description: One sentence describing the change.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Name files, functions, classes, and non-goals.
+      placeholder: |
+        Files:
+        Functions/classes:
+        Non-goals:
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List behavior, error handling, and docs expectations.
+      placeholder: "- "
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation
+      description: Exact commands the agent must run.
+      render: bash
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Risk
+      options:
+        - Low
+        - Medium
+        - High
+    validations:
+      required: true
+  - type: checkboxes
+    id: readiness
+    attributes:
+      label: Readiness
+      options:
+        - label: Product intent is clear.
+          required: true
+        - label: File scope is named.
+          required: true
+        - label: Validation commands are included.
+          required: true
+        - label: Human review owner is known.
+          required: true

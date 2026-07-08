@@ -9,6 +9,7 @@ Run the preflight doctor before giving the endpoint to any agent:
 
 ```bash
 make doctor
+make endpoint-probe
 ```
 
 Then run the acceptance harness:
@@ -25,6 +26,7 @@ The script checks that:
 - Raw `<tool_call>` XML does not leak into `message.content`.
 - `finish_reason` is either `tool_calls` or another explicit value reported by
   the server.
+- The tool schema can be used in strict mode.
 
 ## What A Passing Tool Call Looks Like
 

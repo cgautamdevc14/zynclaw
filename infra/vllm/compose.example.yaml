@@ -10,6 +10,14 @@ services:
       VLLM_ATTENTION_BACKEND: FLASH_ATTN
     volumes:
       - ${HOME}/.cache/huggingface:/models/huggingface
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - python3 -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5)"
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 20m
     command:
       - python3
       - -m
@@ -22,6 +30,8 @@ services:
       - ${VLLM_MODEL:-Qwen/Qwen3.6-27B-FP8}
       - --served-model-name
       - Qwen3.6-27B
+      - --api-key
+      - ${VLLM_API_KEY:-local-vllm-key}
       - --max-model-len
       - ${VLLM_MAX_MODEL_LEN:-262144}
       - --gpu-memory-utilization

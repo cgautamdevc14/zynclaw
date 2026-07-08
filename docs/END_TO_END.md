@@ -120,3 +120,9 @@ A task is done when:
 - QA checklist is complete.
 - PR description names user impact and risk.
 - Human review is complete.
+
+## Source-Backed Defaults
+
+The repo keeps a short source log in [SOURCES.md](SOURCES.md). When changing
+model serving, proxy, observability, GitHub workflow, or GPU runtime defaults,
+update that file with the source and the applied decision.

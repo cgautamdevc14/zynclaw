@@ -72,6 +72,24 @@ if [[ ! -f .env ]]; then
   info "created .env from .env.example"
 else
   info ".env already exists"
+  missing_count=0
+  while IFS= read -r line; do
+    [[ "$line" =~ ^[A-Za-z_][A-Za-z0-9_]*= ]] || continue
+    key="${line%%=*}"
+    if ! grep -q "^${key}=" .env; then
+      if [[ "$missing_count" -eq 0 ]]; then
+        {
+          printf '\n'
+          printf '# Added by scripts/setup.sh after .env.example changed.\n'
+        } >> .env
+      fi
+      printf '%s\n' "$line" >> .env
+      missing_count=$((missing_count + 1))
+    fi
+  done < .env.example
+  if [[ "$missing_count" -gt 0 ]]; then
+    info "added ${missing_count} missing key(s) from .env.example"
+  fi
 fi
 
 have python3 || die "python3 is required"

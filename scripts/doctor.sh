@@ -39,6 +39,9 @@ fi
 
 OPENAI_BASE_URL="${OPENAI_BASE_URL:-http://localhost:4000/v1}"
 OPENAI_API_KEY="${OPENAI_API_KEY:-local-dev-key}"
+VLLM_BASE_URL="${VLLM_BASE_URL:-http://localhost:8000}"
+VLLM_OPENAI_BASE_URL="${VLLM_OPENAI_BASE_URL:-${VLLM_BASE_URL%/}/v1}"
+VLLM_API_KEY="${VLLM_API_KEY:-local-vllm-key}"
 
 if have python3; then
   pass "python3 found: $(python3 --version)"
@@ -103,8 +106,34 @@ if have curl; then
   else
     warn "endpoint not reachable yet: $models_url"
   fi
+
+  vllm_health_url="${VLLM_BASE_URL%/}/health"
+  if curl -fsS --max-time 5 "$vllm_health_url" >/dev/null 2>&1; then
+    pass "vLLM health endpoint reachable: $vllm_health_url"
+  else
+    warn "vLLM health endpoint not reachable yet: $vllm_health_url"
+  fi
+
+  vllm_metrics_url="${VLLM_BASE_URL%/}/metrics"
+  if curl -fsS --max-time 5 "$vllm_metrics_url" 2>/dev/null | grep -q "vllm:"; then
+    pass "vLLM Prometheus metrics are present"
+  else
+    warn "vLLM Prometheus metrics not available yet: $vllm_metrics_url"
+  fi
+
+  litellm_metrics_url="${OPENAI_BASE_URL%/}"
+  litellm_metrics_url="${litellm_metrics_url%/v1}/metrics"
+  if curl -fsS --max-time 5 -H "Authorization: Bearer ${OPENAI_API_KEY}" "$litellm_metrics_url" >/dev/null 2>&1; then
+    pass "LiteLLM metrics endpoint reachable: $litellm_metrics_url"
+  else
+    warn "LiteLLM metrics endpoint not reachable yet: $litellm_metrics_url"
+  fi
 else
   warn "curl not found, skipping endpoint reachability check"
+fi
+
+if [[ "$OPENAI_BASE_URL" == *":8000"* ]]; then
+  warn "OPENAI_BASE_URL appears to point directly at vLLM. Prefer LiteLLM on port 4000 for agent clients."
 fi
 
 printf '\nSummary: %d passed, %d warnings, %d failures\n' "$passes" "$warnings" "$failures"

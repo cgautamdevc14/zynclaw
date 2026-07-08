@@ -70,6 +70,7 @@ In a third terminal:
 
 ```bash
 make doctor
+make endpoint-probe
 ```
 
 Warnings are expected before services are running. Failures should be fixed
@@ -100,6 +101,17 @@ make scaffold WORK="first local agent task"
 
 Fill out the generated files under `work-items/` before assigning work to an
 agent.
+
+## GPU Host Preflight
+
+On the inference host, verify both host GPU access and Docker GPU runtime access:
+
+```bash
+make gpu-preflight
+```
+
+This runs host `nvidia-smi` and then runs `nvidia-smi` inside an
+NVIDIA-enabled container.
 
 ## One Command Host Setup
 

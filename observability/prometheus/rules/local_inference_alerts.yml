@@ -1,0 +1,38 @@
+groups:
+  - name: local-inference
+    rules:
+      - alert: LocalInferenceHighQueueDepth
+        expr: vllm:num_requests_waiting > 8
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: vLLM request queue is growing
+          description: More than 8 requests have been waiting for at least 10 minutes.
+
+      - alert: LocalInferenceHighKvCacheUsage
+        expr: vllm:kv_cache_usage_perc > 0.90
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: vLLM KV cache usage is high
+          description: KV cache usage has been above 90 percent for at least 10 minutes.
+
+      - alert: LocalInferenceHighEndToEndLatency
+        expr: histogram_quantile(0.95, sum(rate(vllm:e2e_request_latency_seconds_bucket[5m])) by (le)) > 60
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: vLLM p95 end-to-end latency is high
+          description: p95 end-to-end request latency has been above 60 seconds for 10 minutes.
+
+      - alert: LocalInferenceHighTimeToFirstToken
+        expr: histogram_quantile(0.95, sum(rate(vllm:time_to_first_token_seconds_bucket[5m])) by (le)) > 10
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: vLLM p95 time to first token is high
+          description: p95 TTFT has been above 10 seconds for 10 minutes.

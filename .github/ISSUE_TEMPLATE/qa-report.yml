@@ -1,0 +1,41 @@
+name: QA report
+description: Report validation results for a change.
+title: "[qa] "
+labels: ["qa"]
+body:
+  - type: input
+    id: change
+    attributes:
+      label: Change under test
+      description: Link the PR, commit, or work item.
+    validations:
+      required: true
+  - type: textarea
+    id: commands
+    attributes:
+      label: Validation commands
+      description: Commands run during QA.
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: Results
+      description: What passed and what failed?
+    validations:
+      required: true
+  - type: textarea
+    id: regressions
+    attributes:
+      label: Regression areas
+      description: What behavior could have regressed?
+  - type: dropdown
+    id: recommendation
+    attributes:
+      label: Recommendation
+      options:
+        - Ship
+        - Hold
+    validations:
+      required: true

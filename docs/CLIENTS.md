@@ -28,6 +28,11 @@ export OPENAI_API_KEY=local-dev-key
 export MODEL=Qwen3.6-27B
 ```
 
+## Do Not Point Agents Directly At vLLM
+
+Use LiteLLM for agent clients. It gives the team one place for auth, monitoring,
+usage accounting, and unsupported parameter handling.
+
 ## Local Agent Task Pattern
 
 Give the local model concrete work:
