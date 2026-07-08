@@ -1,92 +1,40 @@
 # Zynclaw
 
-Local coding-agent inference stack notes, configs, and validation harnesses for a
-DGX Spark style setup.
+Zynclaw is a team operating kit for using local AI agents safely across product,
+project management, engineering, QA, marketing, and sales.
 
-This repository turns the lessons from a working Clawrium local-inference rollout
-into something a team can inspect, reuse, and extend. The goal is not to replace
-frontier models for every part of engineering work. The goal is to make local
-models reliable enough to execute well-scoped tasks, call tools correctly, and
-survive contact with real repositories.
+You can use this repo in two ways:
 
-## Stack
+- Non-technical teammates can use the folders, checklists, and GitHub issue
+  forms to describe work clearly.
+- Technical teammates can run the local inference stack, validation harness, and
+  agent workflow.
 
-- NVIDIA DGX Spark or another NVIDIA host capable of serving the model.
-- Qwen3.6-27B-FP8 served through vLLM.
-- LiteLLM as an OpenAI-compatible proxy, parameter normalizer, and monitoring
-  point.
-- Pi, Hermes, OpenCode, Continue, Cursor, or other agent clients pointed at
-  LiteLLM.
-- Clawrium for fleet-style lifecycle management when multiple hosts or agents
-  are involved.
+The main idea is simple: local agents should get clear tasks, use the right
+tools, pass validation, and stay inside a human-reviewed workflow.
 
-## Core Idea
+## Start Here
 
-Local inference becomes useful for engineering when the stack is treated like
-production infrastructure:
+If you do not want to run anything locally, start here:
 
-1. Frontier model plans the work.
-2. Local model executes the concrete task.
-3. Validation harness checks chat, reasoning, tool calls, and repo tests.
-4. Human review decides what ships.
+1. Open [docs/START_HERE.md](docs/START_HERE.md).
+2. Pick the folder that matches your role:
+   - `product/` for ideas, requirements, metrics, and acceptance criteria.
+   - `project/` for owners, milestones, risks, status, and backlog.
+   - `marketing/` for positioning, campaigns, content, channels, and launch.
+   - `sales/` for ICP, talk tracks, demos, outreach, and objections.
+   - `qa/` for acceptance checks, release checks, and validation notes.
+3. Create a GitHub issue using one of the issue forms:
+   - Product intake
+   - Local agent task
+   - Marketing request
+   - Sales enablement
+   - QA report
 
-That split keeps the local model in the part of the workflow where it can be
-strong today: applying precise changes, using tools, and running tests once the
-acceptance criteria are already clear.
+You do not need Docker, Python, NVIDIA hardware, or command-line tools to use
+the planning and handoff parts of this repo.
 
-## Repository Layout
-
-```text
-.
-|-- .github/
-|   |-- ISSUE_TEMPLATE/
-|   `-- workflows/
-|-- docs/
-|   |-- ARCHITECTURE.md
-|   |-- CLAWRIUM.md
-|   |-- CLIENTS.md
-|   |-- END_TO_END.md
-|   |-- HARDENING.md
-|   |-- OPERATIONS.md
-|   |-- SETUP.md
-|   |-- SOURCES.md
-|   |-- TEAM_ROLLOUT.md
-|   `-- VALIDATION.md
-|-- engineering/
-|-- examples/
-|-- marketing/
-|-- observability/
-|-- product/
-|-- project/
-|-- prompts/
-|-- qa/
-|-- sales/
-|-- infra/
-|   |-- litellm/
-|   |   `-- config.example.yaml
-|   `-- vllm/
-|       |-- Dockerfile.ngc-patched
-|       `-- compose.example.yaml
-|-- scripts/
-|   |-- acceptance.py
-|   |-- check_structure.py
-|   |-- doctor.sh
-|   |-- endpoint_probe.py
-|   |-- gb10_memory.sh
-|   |-- gpu_preflight.sh
-|   |-- install_litellm.sh
-|   |-- log_triage.sh
-|   `-- scaffold_work_item.py
-|-- templates/
-|-- work-items/
-|-- .env.example
-|-- LICENSE
-`-- Makefile
-```
-
-## End-To-End Workflow
-
-Use this repo as the operating model for local-agent delivery:
+## Team Workflow
 
 ```text
 product -> project -> engineering -> qa -> marketing/sales -> release -> learning
@@ -105,17 +53,23 @@ product -> project -> engineering -> qa -> marketing/sales -> release -> learnin
   and sales agents.
 - `examples/` shows a filled work item so the team can copy the pattern.
 
-Create a complete work item folder with:
+For the full workflow, see [docs/END_TO_END.md](docs/END_TO_END.md).
 
-```bash
-make scaffold WORK="improve local agent setup"
-```
+## Common First Actions
 
-For the full process, see [docs/END_TO_END.md](docs/END_TO_END.md).
+| I want to... | Start with |
+|--------------|------------|
+| Capture a new idea | `product/INTAKE.md` or the Product intake issue form |
+| Plan delivery | `project/DELIVERY_PLAN.md` |
+| Hand work to an agent | `engineering/AGENT_CONTRACT.md` or the Local agent task issue form |
+| Validate a change | `qa/ACCEPTANCE_CHECKLIST.md` |
+| Prepare launch messaging | `marketing/POSITIONING.md` |
+| Prepare sales handoff | `sales/SALES_PLAYBOOK.md` |
+| See a filled example | `examples/local-agent-setup-work-item/` |
 
-## Quickstart
+## Technical Setup
 
-For a fresh host:
+Technical teammates who want to run the local model stack should use this path:
 
 ```bash
 git clone https://github.com/cgautamdevc14/zynclaw.git
@@ -123,7 +77,7 @@ cd zynclaw
 make setup
 ```
 
-Then follow the guided path:
+Then:
 
 ```bash
 make install-litellm
@@ -137,17 +91,51 @@ Start LiteLLM in a second terminal:
 make litellm
 ```
 
-Check the setup and run acceptance:
+Check the setup:
 
 ```bash
 make doctor
+make endpoint-probe
 make acceptance
 ```
 
-The harness fails fast if the model returns raw tool XML in `content`, misses
-`tool_calls`, or returns the wrong tool name.
+For the detailed technical guide, see [docs/SETUP.md](docs/SETUP.md).
 
-For the detailed copy-paste guide, see [docs/SETUP.md](docs/SETUP.md).
+## Technical Stack
+
+- NVIDIA inference host capable of serving the model.
+- Qwen3.6-27B-FP8 served through vLLM.
+- LiteLLM as an OpenAI-compatible proxy, parameter normalizer, and monitoring
+  point.
+- Agent clients pointed at LiteLLM.
+- Validation scripts that check readiness, structured tool calls, and endpoint
+  health.
+
+## Repository Layout
+
+```text
+.
+|-- .github/
+|   |-- ISSUE_TEMPLATE/
+|   `-- workflows/
+|-- docs/
+|-- engineering/
+|-- examples/
+|-- marketing/
+|-- observability/
+|-- product/
+|-- project/
+|-- prompts/
+|-- qa/
+|-- sales/
+|-- infra/
+|-- scripts/
+|-- templates/
+|-- work-items/
+|-- .env.example
+|-- LICENSE
+`-- Makefile
+```
 
 ## Make Targets
 
@@ -163,48 +151,35 @@ make litellm          Start LiteLLM in the foreground.
 make acceptance       Validate structured tool-call behavior.
 make endpoint-probe   Probe LiteLLM and vLLM health, models, and metrics.
 make gpu-preflight    Verify host and container GPU access.
-make scaffold         Create a product/project/engineering/QA work item.
+make scaffold         Create a full work-item folder.
 make repo-check       Validate repo structure and local Markdown links.
 ```
 
-## What To Validate First
+## Work Items
 
-- vLLM starts cleanly and the real error is not hidden behind Python shutdown
-  noise.
-- The Qwen tool parser is set to `qwen3_xml`, not `hermes`, for Qwen3.6 XML tool
-  emission.
-- Reasoning is parsed with `qwen3` so `<think>` content does not leak into the
-  assistant `content` field.
-- MTP is actually active by checking startup logs for the resolved architecture.
-- LiteLLM has `drop_params: true` so clients with different reasoning knobs do
-  not trigger avoidable 400s.
-- `/health`, `/v1/models`, and `/metrics` are reachable where expected.
-- GPU access works from both the host and an NVIDIA-enabled container.
+Technical users can create a complete work item folder with:
 
-## Hardening And Observability
+```bash
+make scaffold WORK="improve onboarding flow"
+```
 
-- Use [docs/HARDENING.md](docs/HARDENING.md) before broad team rollout.
-- Use [observability/README.md](observability/README.md) for Prometheus scrape
-  and alerting examples.
-- Use [docs/SOURCES.md](docs/SOURCES.md) to see which official docs informed
-  the current defaults.
+That creates product, project, engineering, marketing, sales, QA, and status
+files under `work-items/`.
 
-## Team Usage
+## Validation
 
-- Use [docs/END_TO_END.md](docs/END_TO_END.md) for the full product-to-QA
-  operating model.
-- Use [docs/CLIENTS.md](docs/CLIENTS.md) to configure local agent clients.
-- Use [docs/TEAM_ROLLOUT.md](docs/TEAM_ROLLOUT.md) to decide which work should
-  go to the local stack first.
-- Use the GitHub issue templates for product intake, local-agent tasks,
-  marketing requests, sales enablement, and QA reports.
+Before assigning real work to a local agent:
 
-## References
+- `make doctor`
+- `make endpoint-probe`
+- `make acceptance`
 
-- [Clawrium](https://github.com/ric03uec/clawrium): agent fleet management for
-  local networks.
-- [Owning Inference - Qwen3.6 on DGX Spark for real coding](https://www.devashish.me/p/owning-inference-qwen36-on-dgx-spark):
-  rollout notes that inspired this repo.
+Before shipping changes:
+
+- Human review is complete.
+- QA checklist is complete.
+- Validation commands pass or failures are documented.
+- Marketing and sales handoff is complete when the change is user-facing.
 
 ## License
 

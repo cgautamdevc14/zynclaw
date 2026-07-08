@@ -16,6 +16,7 @@ REQUIRED_PATHS = [
     "docs/END_TO_END.md",
     "docs/HARDENING.md",
     "docs/SETUP.md",
+    "docs/START_HERE.md",
     "docs/SOURCES.md",
     "docs/VALIDATION.md",
     "examples/local-agent-setup-work-item/product-brief.md",

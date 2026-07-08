@@ -1,6 +1,9 @@
 # Setup Guide
 
-This is the copy-paste path for a new teammate or a fresh inference host.
+This is the technical setup path for a teammate or a fresh inference host.
+
+If you do not need to run the local model stack, start with
+[START_HERE.md](START_HERE.md) instead.
 
 ## 1. Clone And Prepare
 
