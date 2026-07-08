@@ -1,6 +1,7 @@
 # Templates
 
-Reusable templates for product, project, engineering, QA, and release work.
+Reusable templates for product, project, engineering, marketing, sales, QA, and
+release work.
 
 Use the scaffold command for a complete work item:
 

@@ -1,0 +1,39 @@
+name: Marketing request
+description: Request positioning, campaign, content, or launch support.
+title: "[marketing] "
+labels: ["marketing"]
+body:
+  - type: input
+    id: objective
+    attributes:
+      label: Objective
+      description: What should marketing help accomplish?
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: Audience
+      description: Who is this for?
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: Core message
+      description: What should the audience understand or do?
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: Proof
+      description: What evidence supports the message?
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables
+      description: What assets are needed?
+      placeholder: "- "
+    validations:
+      required: true

@@ -54,11 +54,13 @@ acceptance criteria are already clear.
 |   `-- VALIDATION.md
 |-- engineering/
 |-- examples/
+|-- marketing/
 |-- observability/
 |-- product/
 |-- project/
 |-- prompts/
 |-- qa/
+|-- sales/
 |-- infra/
 |   |-- litellm/
 |   |   `-- config.example.yaml
@@ -87,15 +89,20 @@ acceptance criteria are already clear.
 Use this repo as the operating model for local-agent delivery:
 
 ```text
-product -> project -> engineering -> qa -> release -> learning
+product -> project -> engineering -> qa -> marketing/sales -> release -> learning
 ```
 
 - `product/` captures the problem, requirements, non-goals, and metrics.
 - `project/` turns product intent into owners, milestones, risks, and status.
 - `engineering/` defines the agent execution contract and review checklist.
 - `qa/` defines acceptance, evals, regression checks, and release gates.
+- `marketing/` defines positioning, campaigns, content, channels, and launch
+  assets.
+- `sales/` defines ICP, talk tracks, demos, outreach, qualification, and
+  objection handling.
 - `templates/` and `work-items/` keep real tasks organized end to end.
-- `prompts/` contains reusable prompts for product, engineering, and QA agents.
+- `prompts/` contains reusable prompts for product, engineering, QA, marketing,
+  and sales agents.
 - `examples/` shows a filled work item so the team can copy the pattern.
 
 Create a complete work item folder with:
@@ -189,8 +196,8 @@ make repo-check       Validate repo structure and local Markdown links.
 - Use [docs/CLIENTS.md](docs/CLIENTS.md) to configure local agent clients.
 - Use [docs/TEAM_ROLLOUT.md](docs/TEAM_ROLLOUT.md) to decide which work should
   go to the local stack first.
-- Use the GitHub issue templates for product intake, local-agent tasks, and QA
-  reports.
+- Use the GitHub issue templates for product intake, local-agent tasks,
+  marketing requests, sales enablement, and QA reports.
 
 ## References
 

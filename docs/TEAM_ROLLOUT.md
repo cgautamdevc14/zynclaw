@@ -31,8 +31,8 @@ For real work, prefer a generated work item:
 make scaffold WORK="short task name"
 ```
 
-That creates product, project, engineering, QA, and status files under
-`work-items/`.
+That creates product, project, engineering, marketing, sales, QA, and status
+files under `work-items/`.
 
 Use the inline template below for quick GitHub issues or Slack handoffs.
 

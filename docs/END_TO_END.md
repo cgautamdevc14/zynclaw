@@ -4,7 +4,7 @@ This repo is organized around a simple path from idea to validated delivery.
 Each folder owns one stage of the workflow.
 
 ```text
-product -> project -> engineering -> qa -> release -> learning
+product -> project -> engineering -> qa -> marketing/sales -> release -> learning
 ```
 
 ## 1. Product Intake
@@ -77,7 +77,36 @@ Exit criteria:
 - Local model tool-call behavior still passes.
 - Release notes and rollback notes are ready.
 
-## 5. Work Item Folder
+## 5. Marketing And Sales Handoff
+
+Move to `marketing/` and `sales/` when work needs external or revenue-facing
+support.
+
+Marketing artifacts:
+
+- `marketing/POSITIONING.md`
+- `marketing/CAMPAIGN_PLAN.md`
+- `marketing/CONTENT_PLAN.md`
+- `marketing/CHANNELS.md`
+- `marketing/LAUNCH_CHECKLIST.md`
+
+Sales artifacts:
+
+- `sales/ICP.md`
+- `sales/SALES_PLAYBOOK.md`
+- `sales/OUTREACH_SEQUENCE.md`
+- `sales/DEMO_SCRIPT.md`
+- `sales/OBJECTION_HANDLING.md`
+- `sales/QUALIFICATION.md`
+
+Exit criteria:
+
+- Positioning is tied to product proof.
+- Launch assets have owners and dates.
+- Sales has a short talk track and qualification questions.
+- Known objections have responses and proof points.
+
+## 6. Work Item Folder
 
 For real work, create a dedicated folder:
 
@@ -92,6 +121,8 @@ work-items/YYYY-MM-DD-improve-agent-setup-flow/
 |-- product-brief.md
 |-- project-plan.md
 |-- engineering-plan.md
+|-- marketing-plan.md
+|-- sales-plan.md
 |-- qa-plan.md
 `-- status.md
 ```

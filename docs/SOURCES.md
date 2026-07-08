@@ -102,3 +102,14 @@ Applied decisions:
 - Treat SLOs and burn rate as the next step after the stack has steady traffic.
 - Use common GenAI vocabulary for token, model, prompt, workflow, and tool-call
   telemetry when adding tracing later.
+
+## Go-To-Market Workflow
+
+Applied decisions:
+
+- Keep marketing and sales as first-class workflow folders, not release
+  afterthoughts.
+- Require positioning, proof, talk tracks, and objection handling before a
+  launch is considered ready.
+- Keep marketing and sales work connected to the same work-item folder used by
+  product, project, engineering, and QA.
