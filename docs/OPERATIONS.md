@@ -15,6 +15,19 @@ scripts/log_triage.sh logs/vllm.log
 The important line is usually near `EngineCore failed to start`. Errors raised
 while Python is shutting down can be downstream artifacts.
 
+## First Command On A New Host
+
+Run:
+
+```bash
+make setup
+make doctor
+```
+
+`make setup` creates `.env` and performs the first local checks. `make doctor`
+collects the remaining host and endpoint diagnostics without requiring you to
+remember every command.
+
 ## NGC Image Patch
 
 If your NGC vLLM image bundles a FastAPI version that is incompatible with the

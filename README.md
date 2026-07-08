@@ -38,10 +38,15 @@ acceptance criteria are already clear.
 
 ```text
 .
+|-- .github/
+|   |-- ISSUE_TEMPLATE/
+|   `-- workflows/
 |-- docs/
 |   |-- ARCHITECTURE.md
 |   |-- CLAWRIUM.md
+|   |-- CLIENTS.md
 |   |-- OPERATIONS.md
+|   |-- SETUP.md
 |   |-- TEAM_ROLLOUT.md
 |   `-- VALIDATION.md
 |-- infra/
@@ -52,7 +57,9 @@ acceptance criteria are already clear.
 |       `-- compose.example.yaml
 |-- scripts/
 |   |-- acceptance.py
+|   |-- doctor.sh
 |   |-- gb10_memory.sh
+|   |-- install_litellm.sh
 |   `-- log_triage.sh
 |-- .env.example
 |-- LICENSE
@@ -61,37 +68,53 @@ acceptance criteria are already clear.
 
 ## Quickstart
 
-1. Copy the environment template.
+For a fresh host:
 
 ```bash
-cp .env.example .env
+git clone https://github.com/cgautamdevc14/zynclaw.git
+cd zynclaw
+make setup
 ```
 
-2. Build the patched vLLM image if your NGC image has the FastAPI and
-   prometheus-fastapi-instrumentator mismatch.
+Then follow the guided path:
 
 ```bash
-docker build -t vllm-qwen36:26.06-py3-patched -f infra/vllm/Dockerfile.ngc-patched .
+make install-litellm
+make build-vllm
+make start-vllm
 ```
 
-3. Start vLLM and LiteLLM using the examples under `infra/`.
+Start LiteLLM in a second terminal:
 
 ```bash
-docker compose -f infra/vllm/compose.example.yaml up -d
-litellm --config infra/litellm/config.example.yaml --port 4000
+make litellm
 ```
 
-4. Run the acceptance harness before wiring agents to the proxy.
+Check the setup and run acceptance:
 
 ```bash
-OPENAI_BASE_URL=http://localhost:4000/v1 \
-OPENAI_API_KEY=local-dev-key \
-MODEL=Qwen3.6-27B \
-python3 scripts/acceptance.py
+make doctor
+make acceptance
 ```
 
 The harness fails fast if the model returns raw tool XML in `content`, misses
 `tool_calls`, or returns the wrong tool name.
+
+For the detailed copy-paste guide, see [docs/SETUP.md](docs/SETUP.md).
+
+## Make Targets
+
+```text
+make setup            Create .env and check the local machine.
+make setup-all        Install LiteLLM, build vLLM, and start vLLM.
+make doctor           Diagnose prerequisites and endpoint reachability.
+make install-litellm  Install LiteLLM into .venv.
+make build-vllm       Build the patched vLLM image.
+make start-vllm       Start the vLLM compose service.
+make logs-vllm        Follow vLLM logs.
+make litellm          Start LiteLLM in the foreground.
+make acceptance       Validate structured tool-call behavior.
+```
 
 ## What To Validate First
 
@@ -104,6 +127,14 @@ The harness fails fast if the model returns raw tool XML in `content`, misses
 - MTP is actually active by checking startup logs for the resolved architecture.
 - LiteLLM has `drop_params: true` so clients with different reasoning knobs do
   not trigger avoidable 400s.
+
+## Team Usage
+
+- Use [docs/CLIENTS.md](docs/CLIENTS.md) to configure local agent clients.
+- Use [docs/TEAM_ROLLOUT.md](docs/TEAM_ROLLOUT.md) to decide which work should
+  go to the local stack first.
+- Use the `Local agent task` GitHub issue template when handing scoped work to
+  the model.
 
 ## References
 

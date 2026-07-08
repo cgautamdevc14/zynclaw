@@ -5,13 +5,16 @@ that can do useful engineering work.
 
 ## Acceptance Tests
 
-Run this before giving the endpoint to any agent:
+Run the preflight doctor before giving the endpoint to any agent:
 
 ```bash
-OPENAI_BASE_URL=http://localhost:4000/v1 \
-OPENAI_API_KEY=local-dev-key \
-MODEL=Qwen3.6-27B \
-python3 scripts/acceptance.py
+make doctor
+```
+
+Then run the acceptance harness:
+
+```bash
+make acceptance
 ```
 
 The script checks that:
