@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+"""Validate that the repo keeps its operating-model structure intact."""
+
+from __future__ import annotations
+
+import os
+import re
+import sys
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+REQUIRED_PATHS = [
+    "README.md",
+    "docs/END_TO_END.md",
+    "docs/SETUP.md",
+    "docs/VALIDATION.md",
+    "examples/local-agent-setup-work-item/product-brief.md",
+    "product/README.md",
+    "product/INTAKE.md",
+    "product/PRD_TEMPLATE.md",
+    "project/README.md",
+    "project/DELIVERY_PLAN.md",
+    "engineering/README.md",
+    "engineering/AGENT_CONTRACT.md",
+    "engineering/EXECUTION_PLAYBOOK.md",
+    "qa/README.md",
+    "qa/TEST_STRATEGY.md",
+    "qa/ACCEPTANCE_CHECKLIST.md",
+    "templates/work-item/product-brief.md",
+    "templates/work-item/project-plan.md",
+    "templates/work-item/engineering-plan.md",
+    "templates/work-item/qa-plan.md",
+    "templates/work-item/status.md",
+    "prompts/engineering-agent.md",
+    ".github/pull_request_template.md",
+]
+
+EXECUTABLE_SCRIPTS = [
+    "scripts/acceptance.py",
+    "scripts/check_structure.py",
+    "scripts/doctor.sh",
+    "scripts/gb10_memory.sh",
+    "scripts/install_litellm.sh",
+    "scripts/log_triage.sh",
+    "scripts/scaffold_work_item.py",
+    "scripts/setup.sh",
+]
+
+MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+
+
+def is_external(target: str) -> bool:
+    return target.startswith(("http://", "https://", "mailto:", "#"))
+
+
+def strip_anchor(target: str) -> str:
+    return target.split("#", 1)[0]
+
+
+def check_required_paths() -> list[str]:
+    missing = []
+    for item in REQUIRED_PATHS:
+        if not (ROOT / item).exists():
+            missing.append(f"missing required path: {item}")
+    return missing
+
+
+def check_executables() -> list[str]:
+    errors = []
+    for item in EXECUTABLE_SCRIPTS:
+        path = ROOT / item
+        if not path.exists():
+            errors.append(f"missing script: {item}")
+        elif not os.access(path, os.X_OK):
+            errors.append(f"script is not executable: {item}")
+    return errors
+
+
+def check_markdown_links() -> list[str]:
+    errors = []
+    for md_file in ROOT.rglob("*.md"):
+        if ".git" in md_file.parts or ".venv" in md_file.parts:
+            continue
+        text = md_file.read_text(encoding="utf-8")
+        for match in MARKDOWN_LINK.finditer(text):
+            raw_target = match.group(1).strip()
+            if is_external(raw_target):
+                continue
+            target = strip_anchor(raw_target)
+            if not target:
+                continue
+            if target.startswith("/"):
+                continue
+            resolved = (md_file.parent / target).resolve()
+            try:
+                resolved.relative_to(ROOT)
+            except ValueError:
+                errors.append(f"{md_file.relative_to(ROOT)} links outside repo: {raw_target}")
+                continue
+            if not resolved.exists():
+                errors.append(f"{md_file.relative_to(ROOT)} has broken link: {raw_target}")
+    return errors
+
+
+def main() -> int:
+    errors = []
+    errors.extend(check_required_paths())
+    errors.extend(check_executables())
+    errors.extend(check_markdown_links())
+
+    if errors:
+        for error in errors:
+            print(f"FAIL: {error}", file=sys.stderr)
+        return 1
+
+    print("PASS: repository structure is valid")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

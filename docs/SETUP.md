@@ -90,6 +90,17 @@ For debugging:
 make acceptance-print
 ```
 
+## 8. Create A Work Item
+
+When the stack is healthy, create a complete product-to-QA task folder:
+
+```bash
+make scaffold WORK="first local agent task"
+```
+
+Fill out the generated files under `work-items/` before assigning work to an
+agent.
+
 ## One Command Host Setup
 
 If the host already has Docker, NVIDIA drivers, and Python:

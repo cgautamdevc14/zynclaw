@@ -10,8 +10,9 @@ VLLM_COMPOSE ?= infra/vllm/compose.example.yaml
 LITELLM_CONFIG ?= infra/litellm/config.example.yaml
 LITELLM_PORT ?= 4000
 LITELLM_BIN := $(shell if [ -x .venv/bin/litellm ]; then echo .venv/bin/litellm; elif command -v litellm >/dev/null 2>&1; then command -v litellm; else echo litellm; fi)
+WORK ?= local-agent-task
 
-.PHONY: setup setup-all doctor install-litellm build-vllm start-vllm stop-vllm logs-vllm litellm acceptance acceptance-print lint clean
+.PHONY: setup setup-all doctor install-litellm build-vllm start-vllm stop-vllm logs-vllm litellm acceptance acceptance-print scaffold repo-check lint clean
 
 setup:
 	./scripts/setup.sh
@@ -46,9 +47,16 @@ acceptance:
 acceptance-print:
 	python3 scripts/acceptance.py --print-response
 
+scaffold:
+	python3 scripts/scaffold_work_item.py "$(WORK)"
+
+repo-check:
+	python3 scripts/check_structure.py
+
 lint:
-	python3 -m py_compile scripts/acceptance.py
+	python3 -m py_compile scripts/*.py
 	bash -n scripts/*.sh
+	python3 scripts/check_structure.py
 
 clean:
 	rm -rf .pytest_cache .ruff_cache scripts/__pycache__ tmp

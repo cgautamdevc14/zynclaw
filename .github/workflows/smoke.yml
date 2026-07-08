@@ -13,8 +13,10 @@ jobs:
         with:
           python-version: "3.x"
       - name: Compile Python scripts
-        run: python -m py_compile scripts/acceptance.py
+        run: python -m py_compile scripts/*.py
       - name: Parse shell scripts
         run: bash -n scripts/*.sh
+      - name: Check repository structure
+        run: make repo-check
       - name: Check Makefile targets
         run: make lint

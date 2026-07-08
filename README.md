@@ -45,10 +45,17 @@ acceptance criteria are already clear.
 |   |-- ARCHITECTURE.md
 |   |-- CLAWRIUM.md
 |   |-- CLIENTS.md
+|   |-- END_TO_END.md
 |   |-- OPERATIONS.md
 |   |-- SETUP.md
 |   |-- TEAM_ROLLOUT.md
 |   `-- VALIDATION.md
+|-- engineering/
+|-- examples/
+|-- product/
+|-- project/
+|-- prompts/
+|-- qa/
 |-- infra/
 |   |-- litellm/
 |   |   `-- config.example.yaml
@@ -57,14 +64,42 @@ acceptance criteria are already clear.
 |       `-- compose.example.yaml
 |-- scripts/
 |   |-- acceptance.py
+|   |-- check_structure.py
 |   |-- doctor.sh
 |   |-- gb10_memory.sh
 |   |-- install_litellm.sh
-|   `-- log_triage.sh
+|   |-- log_triage.sh
+|   `-- scaffold_work_item.py
+|-- templates/
+|-- work-items/
 |-- .env.example
 |-- LICENSE
 `-- Makefile
 ```
+
+## End-To-End Workflow
+
+Use this repo as the operating model for local-agent delivery:
+
+```text
+product -> project -> engineering -> qa -> release -> learning
+```
+
+- `product/` captures the problem, requirements, non-goals, and metrics.
+- `project/` turns product intent into owners, milestones, risks, and status.
+- `engineering/` defines the agent execution contract and review checklist.
+- `qa/` defines acceptance, evals, regression checks, and release gates.
+- `templates/` and `work-items/` keep real tasks organized end to end.
+- `prompts/` contains reusable prompts for product, engineering, and QA agents.
+- `examples/` shows a filled work item so the team can copy the pattern.
+
+Create a complete work item folder with:
+
+```bash
+make scaffold WORK="improve local agent setup"
+```
+
+For the full process, see [docs/END_TO_END.md](docs/END_TO_END.md).
 
 ## Quickstart
 
@@ -114,6 +149,8 @@ make start-vllm       Start the vLLM compose service.
 make logs-vllm        Follow vLLM logs.
 make litellm          Start LiteLLM in the foreground.
 make acceptance       Validate structured tool-call behavior.
+make scaffold         Create a product/project/engineering/QA work item.
+make repo-check       Validate repo structure and local Markdown links.
 ```
 
 ## What To Validate First
@@ -130,11 +167,13 @@ make acceptance       Validate structured tool-call behavior.
 
 ## Team Usage
 
+- Use [docs/END_TO_END.md](docs/END_TO_END.md) for the full product-to-QA
+  operating model.
 - Use [docs/CLIENTS.md](docs/CLIENTS.md) to configure local agent clients.
 - Use [docs/TEAM_ROLLOUT.md](docs/TEAM_ROLLOUT.md) to decide which work should
   go to the local stack first.
-- Use the `Local agent task` GitHub issue template when handing scoped work to
-  the model.
+- Use the GitHub issue templates for product intake, local-agent tasks, and QA
+  reports.
 
 ## References
 
