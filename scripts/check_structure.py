@@ -13,12 +13,15 @@ ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED_PATHS = [
     "README.md",
+    "SECURITY.md",
     "docs/END_TO_END.md",
     "docs/HARDENING.md",
     "docs/SETUP.md",
     "docs/START_HERE.md",
     "docs/SOURCES.md",
     "docs/VALIDATION.md",
+    "evals/README.md",
+    "evals/promptfoo/local-agent-smoke.yaml",
     "examples/local-agent-setup-work-item/product-brief.md",
     "marketing/README.md",
     "marketing/POSITIONING.md",
@@ -47,6 +50,13 @@ REQUIRED_PATHS = [
     "sales/DEMO_SCRIPT.md",
     "sales/OBJECTION_HANDLING.md",
     "sales/QUALIFICATION.md",
+    "security/README.md",
+    "security/SECRETS.md",
+    "security/AGENT_SECURITY.md",
+    "security/SUPPLY_CHAIN.md",
+    "technology/README.md",
+    "technology/TECHNOLOGY_ROADMAP.md",
+    "technology/STACK_DECISIONS.md",
     "templates/work-item/product-brief.md",
     "templates/work-item/project-plan.md",
     "templates/work-item/engineering-plan.md",
@@ -63,6 +73,7 @@ REQUIRED_PATHS = [
     ".github/ISSUE_TEMPLATE/product-intake.yml",
     ".github/ISSUE_TEMPLATE/qa-report.yml",
     ".github/ISSUE_TEMPLATE/sales-enablement.yml",
+    ".github/workflows/secrets.yml",
 ]
 
 EXECUTABLE_SCRIPTS = [
@@ -74,8 +85,10 @@ EXECUTABLE_SCRIPTS = [
     "scripts/gpu_preflight.sh",
     "scripts/install_litellm.sh",
     "scripts/log_triage.sh",
+    "scripts/run_promptfoo_eval.sh",
     "scripts/scaffold_work_item.py",
     "scripts/setup.sh",
+    "scripts/tech_doctor.sh",
 ]
 
 MARKDOWN_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")

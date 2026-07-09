@@ -113,3 +113,25 @@ Applied decisions:
   launch is considered ready.
 - Keep marketing and sales work connected to the same work-item folder used by
   product, project, engineering, and QA.
+
+## Evals, Tracing, And Security
+
+- promptfoo docs:
+  https://www.promptfoo.dev/docs/intro/
+- Phoenix docs:
+  https://arize.com/docs/phoenix
+- Langfuse self-hosting docs:
+  https://langfuse.com/self-hosting
+- Gitleaks docs:
+  https://github.com/gitleaks/gitleaks
+- OpenSSF Scorecard action:
+  https://github.com/ossf/scorecard-action
+- Trivy action:
+  https://github.com/aquasecurity/trivy-action
+
+Applied decisions:
+
+- Add promptfoo as the first optional eval framework.
+- Recommend choosing either Phoenix or Langfuse for tracing, not both at once.
+- Add gitleaks secret scanning before adding broader supply-chain scanners.
+- Defer Trivy, Scorecard, and Semgrep until security findings have clear owners.

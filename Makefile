@@ -12,7 +12,7 @@ LITELLM_PORT ?= 4000
 LITELLM_BIN := $(shell if [ -x .venv/bin/litellm ]; then echo .venv/bin/litellm; elif command -v litellm >/dev/null 2>&1; then command -v litellm; else echo litellm; fi)
 WORK ?= local-agent-task
 
-.PHONY: setup setup-all doctor install-litellm build-vllm start-vllm stop-vllm logs-vllm litellm acceptance acceptance-print endpoint-probe gpu-preflight scaffold repo-check lint clean
+.PHONY: setup setup-all doctor install-litellm build-vllm start-vllm stop-vllm logs-vllm litellm acceptance acceptance-print endpoint-probe gpu-preflight eval-local tech-doctor scaffold repo-check lint clean
 
 setup:
 	./scripts/setup.sh
@@ -52,6 +52,12 @@ endpoint-probe:
 
 gpu-preflight:
 	./scripts/gpu_preflight.sh
+
+eval-local:
+	./scripts/run_promptfoo_eval.sh
+
+tech-doctor:
+	./scripts/tech_doctor.sh
 
 scaffold:
 	python3 scripts/scaffold_work_item.py "$(WORK)"

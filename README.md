@@ -128,6 +128,9 @@ For the detailed technical guide, see [docs/SETUP.md](docs/SETUP.md).
 |-- prompts/
 |-- qa/
 |-- sales/
+|-- security/
+|-- technology/
+|-- evals/
 |-- infra/
 |-- scripts/
 |-- templates/
@@ -151,9 +154,23 @@ make litellm          Start LiteLLM in the foreground.
 make acceptance       Validate structured tool-call behavior.
 make endpoint-probe   Probe LiteLLM and vLLM health, models, and metrics.
 make gpu-preflight    Verify host and container GPU access.
+make tech-doctor      Show optional eval/security tool availability.
+make eval-local       Run optional local promptfoo evals.
 make scaffold         Create a full work-item folder.
 make repo-check       Validate repo structure and local Markdown links.
 ```
+
+## Recommended Next Technology
+
+Use [technology/TECHNOLOGY_ROADMAP.md](technology/TECHNOLOGY_ROADMAP.md) to
+decide what to add next. The short version:
+
+- Add `promptfoo` first for local-agent evals.
+- Pick one tracing tool later: Phoenix for local debugging/evals, or Langfuse
+  for observability plus prompt management and human annotation.
+- Keep `gitleaks` in the workflow to avoid secret leaks.
+- Add Trivy, OpenSSF Scorecard, Semgrep, or Grafana only when someone owns the
+  alerts and follow-up work.
 
 ## Work Items
 

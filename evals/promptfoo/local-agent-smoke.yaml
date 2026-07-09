@@ -1,0 +1,46 @@
+description: Local agent smoke evals
+
+prompts:
+  - |
+    You are preparing a local-agent task.
+
+    User request:
+    {{request}}
+
+    Return exactly four sections:
+    Objective
+    Scope
+    Acceptance Criteria
+    Validation
+
+providers:
+  - id: openai:chat:Qwen3.6-27B
+    config:
+      apiBaseUrl: "{{env.OPENAI_BASE_URL}}"
+      apiKey: "{{env.OPENAI_API_KEY}}"
+      temperature: 0
+
+tests:
+  - vars:
+      request: Add a README section for QA reviewers without changing setup scripts.
+    assert:
+      - type: contains
+        value: Objective
+      - type: contains
+        value: Scope
+      - type: contains
+        value: Acceptance Criteria
+      - type: contains
+        value: Validation
+      - type: not-contains
+        value: "I ran"
+
+  - vars:
+      request: Draft launch messaging for sales leaders and list proof needed.
+    assert:
+      - type: contains
+        value: Objective
+      - type: contains
+        value: Acceptance Criteria
+      - type: contains
+        value: Validation

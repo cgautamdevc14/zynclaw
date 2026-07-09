@@ -24,6 +24,7 @@ handed to an AI agent or an engineer.
 | QA | `qa/` | `qa/ACCEPTANCE_CHECKLIST.md` |
 | Marketing | `marketing/` | `marketing/POSITIONING.md` |
 | Sales | `sales/` | `sales/SALES_PLAYBOOK.md` |
+| Technology planning | `technology/` | `technology/TECHNOLOGY_ROADMAP.md` |
 
 ## Easiest Way To Start
 
