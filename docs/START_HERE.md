@@ -14,6 +14,8 @@ idea -> plan -> agent task -> QA -> launch -> learning
 The repo gives each team a place to write the important context before work is
 handed to an AI agent or an engineer.
 
+For a short overview, read [ONE_PAGE_OVERVIEW.md](ONE_PAGE_OVERVIEW.md).
+
 ## Choose Your Starting Point
 
 | Role | Use This Folder | Best First File |
@@ -86,3 +88,9 @@ QA, and status files.
 ## Where To Look For Examples
 
 Use `examples/local-agent-setup-work-item/` to see a filled-out task.
+
+## How To Roll It Out
+
+- Use [ADOPTION_PLAN.md](ADOPTION_PLAN.md) for the first month.
+- Use [OPERATING_CADENCE.md](OPERATING_CADENCE.md) for weekly routines.
+- Use [QUICK_DEMO.md](QUICK_DEMO.md) to introduce it to the team.

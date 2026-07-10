@@ -124,6 +124,7 @@ work-items/YYYY-MM-DD-improve-agent-setup-flow/
 |-- marketing-plan.md
 |-- sales-plan.md
 |-- qa-plan.md
+|-- launch-handoff.md
 `-- status.md
 ```
 
@@ -150,6 +151,7 @@ A task is done when:
 - Validation commands pass or failures are documented.
 - QA checklist is complete.
 - PR description names user impact and risk.
+- Launch handoff is complete when the change is user-facing.
 - Human review is complete.
 
 ## Source-Backed Defaults

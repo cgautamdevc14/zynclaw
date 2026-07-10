@@ -66,6 +66,17 @@ For the full workflow, see [docs/END_TO_END.md](docs/END_TO_END.md).
 | Prepare launch messaging | `marketing/POSITIONING.md` |
 | Prepare sales handoff | `sales/SALES_PLAYBOOK.md` |
 | See a filled example | `examples/local-agent-setup-work-item/` |
+| Demo the repo to the team | `docs/QUICK_DEMO.md` |
+
+## Team Adoption
+
+Use these when rolling this out beyond one person:
+
+- [docs/ONE_PAGE_OVERVIEW.md](docs/ONE_PAGE_OVERVIEW.md) for a short summary.
+- [docs/ADOPTION_PLAN.md](docs/ADOPTION_PLAN.md) for a four-week rollout path.
+- [docs/OPERATING_CADENCE.md](docs/OPERATING_CADENCE.md) for weekly usage.
+- [docs/GOVERNANCE.md](docs/GOVERNANCE.md) for decision rights and gates.
+- [docs/FAQ.md](docs/FAQ.md) for common teammate questions.
 
 ## Technical Setup
 
@@ -181,7 +192,7 @@ make scaffold WORK="improve onboarding flow"
 ```
 
 That creates product, project, engineering, marketing, sales, QA, and status
-files under `work-items/`.
+files under `work-items/`, plus a launch handoff file.
 
 ## Validation
 
