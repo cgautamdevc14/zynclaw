@@ -81,11 +81,33 @@ Applied decisions:
 
 - GitHub issue forms docs:
   https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-issue-forms
+- GitHub README docs:
+  https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes
 
 Applied decisions:
 
 - Use structured issue forms for product intake, local-agent tasks, and QA
   reports.
+- Keep the README focused on usefulness, what people can do, and how to start.
+
+## Agent Context
+
+- Model Context Protocol introduction:
+  https://modelcontextprotocol.io/docs/getting-started/intro
+- Model Context Protocol tools specification:
+  https://modelcontextprotocol.io/specification/2025-06-18/server/tools
+- OpenAI evals guide:
+  https://developers.openai.com/api/docs/guides/evals
+- OpenAI agent evals guide:
+  https://developers.openai.com/api/docs/guides/agent-evals
+
+Applied decisions:
+
+- Add `make context` so agents receive consistent role-specific context.
+- Keep tool-call acceptance and evals separate: acceptance checks the endpoint;
+  evals check task behavior.
+- Treat tools, resources, prompts, traces, graders, and datasets as distinct
+  pieces of the agent-quality loop.
 
 ## Observability And SRE
 

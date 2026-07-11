@@ -1,4 +1,5 @@
 SHELL := /bin/bash
+.DEFAULT_GOAL := help
 
 ifneq (,$(wildcard .env))
 include .env
@@ -11,8 +12,30 @@ LITELLM_CONFIG ?= infra/litellm/config.example.yaml
 LITELLM_PORT ?= 4000
 LITELLM_BIN := $(shell if [ -x .venv/bin/litellm ]; then echo .venv/bin/litellm; elif command -v litellm >/dev/null 2>&1; then command -v litellm; else echo litellm; fi)
 WORK ?= local-agent-task
+ROLE ?= all
 
-.PHONY: setup setup-all doctor install-litellm build-vllm start-vllm stop-vllm logs-vllm litellm acceptance acceptance-print endpoint-probe gpu-preflight eval-local tech-doctor scaffold repo-check lint clean
+.PHONY: help setup setup-all doctor install-litellm build-vllm start-vllm stop-vllm logs-vllm litellm acceptance acceptance-print endpoint-probe gpu-preflight eval-local tech-doctor scaffold context repo-check lint clean
+
+help:
+	@printf 'Zynclaw commands\n'
+	@printf '\nNon-technical / workflow:\n'
+	@printf '  make help                         Show this menu\n'
+	@printf '  make scaffold WORK="task name"    Create a full work-item folder\n'
+	@printf '  make context ROLE=engineering     Export a role-specific agent context pack\n'
+	@printf '  make repo-check                   Validate required docs and local links\n'
+	@printf '\nTechnical setup:\n'
+	@printf '  make setup                        Create/update .env and check basics\n'
+	@printf '  make install-litellm              Install LiteLLM into .venv\n'
+	@printf '  make build-vllm                   Build the patched vLLM image\n'
+	@printf '  make start-vllm                   Start vLLM with Docker Compose\n'
+	@printf '  make litellm                      Start LiteLLM in the foreground\n'
+	@printf '\nValidation:\n'
+	@printf '  make doctor                       Check prerequisites and reachability\n'
+	@printf '  make endpoint-probe               Probe LiteLLM/vLLM health and metrics\n'
+	@printf '  make acceptance                   Validate structured tool calls\n'
+	@printf '  make eval-local                   Run optional promptfoo evals\n'
+	@printf '  make tech-doctor                  Check optional eval/security tools\n'
+	@printf '  make lint                         Run repo validation checks\n'
 
 setup:
 	./scripts/setup.sh
@@ -61,6 +84,9 @@ tech-doctor:
 
 scaffold:
 	python3 scripts/scaffold_work_item.py "$(WORK)"
+
+context:
+	python3 scripts/export_context.py --role "$(ROLE)"
 
 repo-check:
 	python3 scripts/check_structure.py

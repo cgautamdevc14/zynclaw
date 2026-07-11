@@ -15,6 +15,8 @@ The repo gives each team a place to write the important context before work is
 handed to an AI agent or an engineer.
 
 For a short overview, read [ONE_PAGE_OVERVIEW.md](ONE_PAGE_OVERVIEW.md).
+If you are unsure where to go, use [NAVIGATION.md](NAVIGATION.md) or
+[DECISION_TREE.md](DECISION_TREE.md).
 
 ## Choose Your Starting Point
 
@@ -45,6 +47,8 @@ Good options:
 - Marketing request
 - Sales enablement
 - QA report
+
+See [ISSUE_FORMS.md](ISSUE_FORMS.md) for when to use each one.
 
 ## What Good Input Looks Like
 

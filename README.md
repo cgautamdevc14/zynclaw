@@ -34,6 +34,9 @@ If you do not want to run anything locally, start here:
 You do not need Docker, Python, NVIDIA hardware, or command-line tools to use
 the planning and handoff parts of this repo.
 
+If you are unsure where to go, use [docs/NAVIGATION.md](docs/NAVIGATION.md) or
+[docs/DECISION_TREE.md](docs/DECISION_TREE.md).
+
 ## Team Workflow
 
 ```text
@@ -142,6 +145,7 @@ For the detailed technical guide, see [docs/SETUP.md](docs/SETUP.md).
 |-- security/
 |-- technology/
 |-- evals/
+|-- context/
 |-- infra/
 |-- scripts/
 |-- templates/
@@ -168,6 +172,7 @@ make gpu-preflight    Verify host and container GPU access.
 make tech-doctor      Show optional eval/security tool availability.
 make eval-local       Run optional local promptfoo evals.
 make scaffold         Create a full work-item folder.
+make context          Export a role-specific agent context pack.
 make repo-check       Validate repo structure and local Markdown links.
 ```
 
@@ -193,6 +198,14 @@ make scaffold WORK="improve onboarding flow"
 
 That creates product, project, engineering, marketing, sales, QA, and status
 files under `work-items/`, plus a launch handoff file.
+
+You can also export a context pack for an agent:
+
+```bash
+make context ROLE=engineering
+```
+
+The generated file goes to `tmp/agent-context.md`.
 
 ## Validation
 

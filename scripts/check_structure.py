@@ -16,12 +16,14 @@ REQUIRED_PATHS = [
     "CONTRIBUTING.md",
     "SECURITY.md",
     "docs/ADOPTION_PLAN.md",
+    "docs/DECISION_TREE.md",
     "docs/END_TO_END.md",
     "docs/FAQ.md",
     "docs/GOVERNANCE.md",
     "docs/HARDENING.md",
     "docs/ONE_PAGE_OVERVIEW.md",
     "docs/OPERATING_CADENCE.md",
+    "docs/ISSUE_FORMS.md",
     "docs/QUICK_DEMO.md",
     "docs/SETUP.md",
     "docs/START_HERE.md",
@@ -29,6 +31,7 @@ REQUIRED_PATHS = [
     "docs/VALIDATION.md",
     "evals/README.md",
     "evals/promptfoo/local-agent-smoke.yaml",
+    "context/README.md",
     "examples/local-agent-setup-work-item/product-brief.md",
     "marketing/README.md",
     "marketing/POSITIONING.md",
@@ -90,6 +93,7 @@ EXECUTABLE_SCRIPTS = [
     "scripts/check_structure.py",
     "scripts/doctor.sh",
     "scripts/endpoint_probe.py",
+    "scripts/export_context.py",
     "scripts/gb10_memory.sh",
     "scripts/gpu_preflight.sh",
     "scripts/install_litellm.sh",
@@ -133,7 +137,7 @@ def check_executables() -> list[str]:
 def check_markdown_links() -> list[str]:
     errors = []
     for md_file in ROOT.rglob("*.md"):
-        if ".git" in md_file.parts or ".venv" in md_file.parts:
+        if ".git" in md_file.parts or ".venv" in md_file.parts or "tmp" in md_file.parts:
             continue
         text = md_file.read_text(encoding="utf-8")
         for match in MARKDOWN_LINK.finditer(text):
