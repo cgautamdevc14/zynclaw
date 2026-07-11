@@ -66,6 +66,13 @@ ROLE_FILES = {
         "technology/STACK_DECISIONS.md",
         "evals/README.md",
     ],
+    "connections": [
+        "connections/README.md",
+        "connections/QUICK_START.md",
+        "connections/CONNECTION_CATALOG.md",
+        "connections/CONNECTION_POLICY.md",
+        "prompts/connection-agent.md",
+    ],
 }
 
 
@@ -134,7 +141,7 @@ def main() -> int:
     parser.add_argument(
         "--role",
         default="all",
-        help="Role to export: all, product, project, engineering, qa, marketing, sales, technology",
+        help="Role to export: all, product, project, engineering, qa, marketing, sales, technology, connections",
     )
     parser.add_argument("--output", default=str(DEFAULT_OUTPUT), help="Output Markdown file")
     args = parser.parse_args()

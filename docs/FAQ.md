@@ -34,3 +34,9 @@ done until a human owner decides the next step.
 Start with `promptfoo` for evals if you are changing prompts, models, or agent
 instructions. Use [technology/TECHNOLOGY_ROADMAP.md](../technology/TECHNOLOGY_ROADMAP.md)
 for the rest.
+
+## How do we connect Slack, GitHub, Notion, Jira, HubSpot, or other tools?
+
+Start with [connections/QUICK_START.md](../connections/QUICK_START.md). Use
+`make connections-list` to see supported connection options and
+`make connections-check` to see which environment variables are configured.

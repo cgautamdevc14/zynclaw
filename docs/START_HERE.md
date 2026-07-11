@@ -29,6 +29,7 @@ If you are unsure where to go, use [NAVIGATION.md](NAVIGATION.md) or
 | Marketing | `marketing/` | `marketing/POSITIONING.md` |
 | Sales | `sales/` | `sales/SALES_PLAYBOOK.md` |
 | Technology planning | `technology/` | `technology/TECHNOLOGY_ROADMAP.md` |
+| Tool connections | `connections/` | `connections/QUICK_START.md` |
 
 ## Easiest Way To Start
 
@@ -47,6 +48,7 @@ Good options:
 - Marketing request
 - Sales enablement
 - QA report
+- Connection request
 
 See [ISSUE_FORMS.md](ISSUE_FORMS.md) for when to use each one.
 

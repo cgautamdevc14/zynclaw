@@ -12,6 +12,7 @@ clear operating problem.
 | Stack metrics | Prometheus | Scrapes LiteLLM and vLLM metrics |
 | Team workflow | GitHub issue forms | Creates structured intake for product, agent tasks, QA, marketing, and sales |
 | Validation | Python and shell scripts | Checks readiness, tool calls, GPU access, and repo structure |
+| Connections | Connection catalog and checker | Shows optional tool integrations and required env vars |
 
 ## Add Next
 
@@ -84,6 +85,18 @@ Security scanners are only useful when alerts have owners.
 Recommended technology: MkDocs or Docusaurus.
 
 Do this only if the repo grows past what a README plus `docs/` can handle.
+
+### 6. Connection Runtime
+
+Recommended approach:
+
+- Start with documented connection readiness.
+- Add one real client at a time.
+- Prefer MCP servers when a connection should expose multiple tools/resources to
+  agents.
+
+Do this only after the team knows which workflow needs the connection. Do not
+add live API clients just because an API exists.
 
 ## Later
 

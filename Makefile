@@ -14,7 +14,7 @@ LITELLM_BIN := $(shell if [ -x .venv/bin/litellm ]; then echo .venv/bin/litellm;
 WORK ?= local-agent-task
 ROLE ?= all
 
-.PHONY: help setup setup-all doctor install-litellm build-vllm start-vllm stop-vllm logs-vllm litellm acceptance acceptance-print endpoint-probe gpu-preflight eval-local tech-doctor scaffold context repo-check lint clean
+.PHONY: help setup setup-all doctor install-litellm build-vllm start-vllm stop-vllm logs-vllm litellm acceptance acceptance-print endpoint-probe gpu-preflight eval-local tech-doctor scaffold context connections-check connections-list repo-check lint clean
 
 help:
 	@printf 'Zynclaw commands\n'
@@ -22,6 +22,8 @@ help:
 	@printf '  make help                         Show this menu\n'
 	@printf '  make scaffold WORK="task name"    Create a full work-item folder\n'
 	@printf '  make context ROLE=engineering     Export a role-specific agent context pack\n'
+	@printf '  make connections-list             Show supported connection options\n'
+	@printf '  make connections-check            Check configured connection env vars\n'
 	@printf '  make repo-check                   Validate required docs and local links\n'
 	@printf '\nTechnical setup:\n'
 	@printf '  make setup                        Create/update .env and check basics\n'
@@ -87,6 +89,12 @@ scaffold:
 
 context:
 	python3 scripts/export_context.py --role "$(ROLE)"
+
+connections-check:
+	python3 scripts/check_connections.py
+
+connections-list:
+	python3 scripts/check_connections.py --list
 
 repo-check:
 	python3 scripts/check_structure.py

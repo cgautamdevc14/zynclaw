@@ -7,6 +7,7 @@ These prompts are starting points for local-agent workflows.
 - `qa-agent.md`: validate a completed change.
 - `marketing-agent.md`: prepare positioning, launch, and content support.
 - `sales-agent.md`: prepare discovery, demo, talk track, and objections.
+- `connection-agent.md`: evaluate new tool connections and permissions.
 
 Prompts should include file scope, non-goals, and validation commands. Avoid
 asking the local model to infer strategy from a vague request.

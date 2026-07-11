@@ -19,6 +19,7 @@ Use this when you are not sure where to go.
 | Prepare launch messaging | `marketing/POSITIONING.md` |
 | Prepare sales handoff | `sales/SALES_PLAYBOOK.md` |
 | Choose technology | `technology/TECHNOLOGY_ROADMAP.md` |
+| Connect tools | `connections/QUICK_START.md` |
 | Generate agent context | `context/README.md` |
 
 ## By Role
@@ -33,6 +34,7 @@ Use this when you are not sure where to go.
 | Sales | `sales/` |
 | Security | `security/` |
 | Technology owner | `technology/` |
+| Integration owner | `connections/` |
 
 ## By Command
 
@@ -41,5 +43,6 @@ Use this when you are not sure where to go.
 | `make help` | You forgot the available commands |
 | `make scaffold WORK="name"` | You need a complete work-item folder |
 | `make context ROLE=engineering` | You want a context pack for an agent |
+| `make connections-check` | You want to see which optional connections are configured |
 | `make lint` | You changed files and want to verify the repo |
 | `make setup` | You are preparing the technical stack |

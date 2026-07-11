@@ -83,3 +83,19 @@ Then ask:
 - Who owns it?
 - What command proves it works?
 - What would make us remove it?
+
+### I Need To Connect A Tool
+
+Use:
+
+- `connections/QUICK_START.md`
+- `connections/CONNECTION_CATALOG.md`
+- Connection request issue form
+
+Then ask:
+
+- What workflow needs this connection?
+- Is read-only enough?
+- Who owns the credential?
+- What can the agent see or change?
+- How do we reverse a bad action?

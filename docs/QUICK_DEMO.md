@@ -59,7 +59,26 @@ security/AGENT_SECURITY.md
 
 Explain that agents do execution, but humans keep ownership.
 
-## 6. Close With The Ask
+## 6. Show Connections
+
+Open:
+
+```text
+connections/CONNECTION_CATALOG.md
+connections/CONNECTION_POLICY.md
+```
+
+For a technical demo:
+
+```bash
+make connections-list
+make connections-check
+```
+
+Explain that connections are added slowly, with owners, narrow scopes, and
+human approval for writes.
+
+## 7. Close With The Ask
 
 Ask each function to try one thing:
 

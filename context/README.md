@@ -19,6 +19,7 @@ Supported roles:
 - `marketing`
 - `sales`
 - `technology`
+- `connections`
 
 The generated file is written to:
 

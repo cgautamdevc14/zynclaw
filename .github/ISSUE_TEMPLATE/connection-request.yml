@@ -1,0 +1,57 @@
+name: Connection request
+description: Request or review a new tool connection.
+title: "[connection] "
+labels: ["connection"]
+body:
+  - type: input
+    id: system
+    attributes:
+      label: System
+      description: Which tool should connect?
+      placeholder: Slack, GitHub, Google Drive, Linear, Jira, Notion, HubSpot, MCP
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: What workflow will this connection support?
+    validations:
+      required: true
+  - type: dropdown
+    id: access_level
+    attributes:
+      label: Access level
+      options:
+        - Read-only
+        - Draft writes only
+        - Direct writes
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Data involved
+      description: What data can the agent see or modify?
+    validations:
+      required: true
+  - type: textarea
+    id: owner
+    attributes:
+      label: Owners
+      description: Business owner, technical owner, and reviewer.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety checks
+      options:
+        - label: Scope is narrow enough for the workflow.
+          required: true
+        - label: Secrets will be stored outside Git.
+          required: true
+        - label: Write actions have a human approval path.
+          required: true
+        - label: Rollback or correction path is known.
+          required: true

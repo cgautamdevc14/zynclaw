@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "zynclaw-local": {
+      "command": "python3",
+      "args": ["scripts/export_context.py", "--role", "engineering", "--output", "tmp/agent-context.md"],
+      "env": {}
+    }
+  }
+}

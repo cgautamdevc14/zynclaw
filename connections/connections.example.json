@@ -1,0 +1,94 @@
+{
+  "connections": [
+    {
+      "id": "github",
+      "name": "GitHub",
+      "category": "code",
+      "use_for": "repositories, issues, pull requests, reviews",
+      "auth_pattern": "GitHub App for shared automation; fine-grained PAT for local testing",
+      "required_env": ["GITHUB_TOKEN"],
+      "optional_env": ["GITHUB_APP_ID", "GITHUB_INSTALLATION_ID"],
+      "first_scope": "repo read and issues read"
+    },
+    {
+      "id": "slack",
+      "name": "Slack",
+      "category": "communication",
+      "use_for": "status updates, handoffs, team notifications",
+      "auth_pattern": "Slack app bot token or incoming webhook for one-channel posts",
+      "required_env": ["SLACK_BOT_TOKEN"],
+      "optional_env": ["SLACK_SIGNING_SECRET", "SLACK_WEBHOOK_URL", "SLACK_DEFAULT_CHANNEL"],
+      "first_scope": "post to one test channel"
+    },
+    {
+      "id": "google_drive",
+      "name": "Google Drive",
+      "category": "docs",
+      "use_for": "Docs, Sheets, Slides, shared files",
+      "auth_pattern": "OAuth or service account with approved domain-wide delegation",
+      "required_env": ["GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET"],
+      "optional_env": ["GOOGLE_SERVICE_ACCOUNT_FILE", "GOOGLE_WORKSPACE_SUBJECT"],
+      "first_scope": "read selected files"
+    },
+    {
+      "id": "google_calendar",
+      "name": "Google Calendar",
+      "category": "calendar",
+      "use_for": "availability, meeting prep, reminders",
+      "auth_pattern": "OAuth or admin-approved service account delegation",
+      "required_env": ["GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET"],
+      "optional_env": ["GOOGLE_SERVICE_ACCOUNT_FILE", "GOOGLE_WORKSPACE_SUBJECT"],
+      "first_scope": "read calendar"
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "category": "project",
+      "use_for": "issues, projects, engineering planning",
+      "auth_pattern": "OAuth for team app; personal API key for local testing",
+      "required_env": ["LINEAR_API_KEY"],
+      "optional_env": ["LINEAR_WEBHOOK_SECRET"],
+      "first_scope": "read issues"
+    },
+    {
+      "id": "jira",
+      "name": "Jira",
+      "category": "project",
+      "use_for": "enterprise project tracking and issue updates",
+      "auth_pattern": "OAuth 2.0 3LO for user-approved access",
+      "required_env": ["JIRA_BASE_URL", "JIRA_EMAIL", "JIRA_API_TOKEN"],
+      "optional_env": ["JIRA_CLOUD_ID"],
+      "first_scope": "read project issues"
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "category": "docs",
+      "use_for": "workspace pages, databases, lightweight knowledge base",
+      "auth_pattern": "internal connection token or OAuth public connection",
+      "required_env": ["NOTION_TOKEN"],
+      "optional_env": ["NOTION_DATABASE_ID"],
+      "first_scope": "read selected pages"
+    },
+    {
+      "id": "hubspot",
+      "name": "HubSpot",
+      "category": "crm",
+      "use_for": "companies, contacts, deals, customer prep",
+      "auth_pattern": "private app access token for internal automation; OAuth for public apps",
+      "required_env": ["HUBSPOT_ACCESS_TOKEN"],
+      "optional_env": ["HUBSPOT_PORTAL_ID"],
+      "first_scope": "read selected CRM objects"
+    },
+    {
+      "id": "mcp",
+      "name": "MCP Server",
+      "category": "agent-tools",
+      "use_for": "standardized tools and resources for agent clients",
+      "auth_pattern": "local server first; explicit tool and resource allowlist",
+      "required_env": [],
+      "optional_env": ["MCP_SERVER_URL", "MCP_SERVER_TOKEN"],
+      "first_scope": "read-only resources and safe tools"
+    }
+  ]
+}

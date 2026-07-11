@@ -11,6 +11,7 @@ Issue forms make intake easier for teammates who do not want to edit files.
 | Marketing request | Positioning, campaign, content, or launch work |
 | Sales enablement | ICP, talk track, demo, outreach, or objections |
 | QA report | Validation results and release recommendation |
+| Connection request | New tool connections and permission reviews |
 
 ## What To Include
 

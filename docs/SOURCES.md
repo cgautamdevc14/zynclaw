@@ -109,6 +109,35 @@ Applied decisions:
 - Treat tools, resources, prompts, traces, graders, and datasets as distinct
   pieces of the agent-quality loop.
 
+## Connections
+
+- Slack incoming webhooks:
+  https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks
+- Slack incoming-webhook scope:
+  https://docs.slack.dev/reference/scopes/incoming-webhook
+- GitHub REST API authentication:
+  https://docs.github.com/rest/overview/authenticating-to-the-rest-api
+- GitHub App installation authentication:
+  https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/authenticating-as-a-github-app-installation
+- Google service accounts and domain-wide delegation:
+  https://developers.google.com/identity/protocols/oauth2/service-account
+- Linear developer docs:
+  https://linear.app/developers
+- Jira Cloud OAuth 2.0 apps:
+  https://developer.atlassian.com/cloud/jira/software/oauth-2-3lo-apps/
+- Notion authorization docs:
+  https://developers.notion.com/guides/get-started/authorization
+- HubSpot authentication docs:
+  https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview
+
+Applied decisions:
+
+- Add a connection catalog before adding live API clients.
+- Start each connection with a narrow first permission.
+- Keep connection readiness checks local and non-invasive.
+- Require owner, access level, data scope, and rollback path before enabling
+  direct writes.
+
 ## Observability And SRE
 
 - Prometheus alerting practices:

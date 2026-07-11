@@ -68,6 +68,7 @@ For the full workflow, see [docs/END_TO_END.md](docs/END_TO_END.md).
 | Validate a change | `qa/ACCEPTANCE_CHECKLIST.md` |
 | Prepare launch messaging | `marketing/POSITIONING.md` |
 | Prepare sales handoff | `sales/SALES_PLAYBOOK.md` |
+| Connect Slack, GitHub, docs, CRM, or project tools | `connections/QUICK_START.md` |
 | See a filled example | `examples/local-agent-setup-work-item/` |
 | Demo the repo to the team | `docs/QUICK_DEMO.md` |
 
@@ -144,6 +145,7 @@ For the detailed technical guide, see [docs/SETUP.md](docs/SETUP.md).
 |-- sales/
 |-- security/
 |-- technology/
+|-- connections/
 |-- evals/
 |-- context/
 |-- infra/
@@ -171,9 +173,22 @@ make endpoint-probe   Probe LiteLLM and vLLM health, models, and metrics.
 make gpu-preflight    Verify host and container GPU access.
 make tech-doctor      Show optional eval/security tool availability.
 make eval-local       Run optional local promptfoo evals.
+make connections-list Show supported connection options.
+make connections-check Check which connection env vars are configured.
 make scaffold         Create a full work-item folder.
 make context          Export a role-specific agent context pack.
 make repo-check       Validate repo structure and local Markdown links.
+```
+
+## Connections
+
+Use [connections/README.md](connections/README.md) to decide which systems to
+connect. Start with GitHub and Slack, then add docs, project tracking, CRM, or
+MCP tools only when the workflow needs them.
+
+```bash
+make connections-list
+make connections-check
 ```
 
 ## Recommended Next Technology
